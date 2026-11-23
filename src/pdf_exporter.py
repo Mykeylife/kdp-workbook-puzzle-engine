@@ -196,6 +196,75 @@ def draw_answer_key_pages(c, unit_solutions):
 
     c.showPage()
 
+def draw_certificate_page(c, book_subtitle="Bilingual Vocabulary & Brain Puzzles"):
+    # Dashed outer cut-out border
+    c.setStrokeColor(colors.black)
+    c.setLineWidth(1.5)
+    c.setDash(6, 4)
+    c.rect(MARGIN, MARGIN, PAGE_WIDTH - 2 * MARGIN, PAGE_HEIGHT - 2 * MARGIN)
+
+    # Solid decorative inner border
+    c.setDash([])
+    c.setLineWidth(2.5)
+    inner_offset = 14
+    c.rect(
+        MARGIN + inner_offset,
+        MARGIN + inner_offset,
+        PAGE_WIDTH - 2 * (MARGIN + inner_offset),
+        PAGE_HEIGHT - 2 * (MARGIN + inner_offset)
+    )
+
+    # Scissors / Cut instruction at top
+    c.setFont("Helvetica-Oblique", 9)
+    c.setFillColor(colors.darkgray)
+    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - MARGIN + 6, "✂  Cut along the dashed line to display your certificate!  ✂")
+
+    # Main Certificate Title
+    c.setFillColor(colors.black)
+    c.setFont("Helvetica-Bold", 28)
+    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 165, "CERTIFICATE OF ACHIEVEMENT")
+
+    c.setFont("Helvetica", 14)
+    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 205, "This certifies that")
+
+    # Student Name Line
+    c.setLineWidth(1.2)
+    c.line(140, PAGE_HEIGHT - 275, PAGE_WIDTH - 140, PAGE_HEIGHT - 275)
+    c.setFont("Helvetica-Oblique", 10)
+    c.setFillColor(colors.darkgray)
+    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 290, "(Write your name here)")
+
+    # Achievement Text
+    c.setFillColor(colors.black)
+    c.setFont("Helvetica", 14)
+    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 340, "has successfully completed all units and brain puzzles in")
+
+    c.setFont("Helvetica-Bold", 16)
+    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 370, book_subtitle)
+
+    # Decorative Star / Seal Emblem
+    center_x = PAGE_WIDTH / 2
+    seal_y = PAGE_HEIGHT - 465
+    c.setLineWidth(2)
+    c.circle(center_x, seal_y, 38, stroke=1, fill=0)
+    c.setLineWidth(1)
+    c.circle(center_x, seal_y, 32, stroke=1, fill=0)
+    c.setFont("Helvetica-Bold", 11)
+    c.drawCentredString(center_x, seal_y + 4, "SUPER")
+    c.drawCentredString(center_x, seal_y - 10, "LEARNER")
+
+    # Date and Signature Lines
+    sig_y = MARGIN + 75
+    c.setLineWidth(1)
+    c.line(95, sig_y, 255, sig_y)
+    c.line(PAGE_WIDTH - 255, sig_y, PAGE_WIDTH - 95, sig_y)
+
+    c.setFont("Helvetica", 11)
+    c.drawCentredString(175, sig_y - 16, "Date")
+    c.drawCentredString(PAGE_WIDTH - 175, sig_y - 16, "Parent / Teacher Signature")
+
+    c.showPage()
+
 
 def build_kdp_pdf(json_path="data/units_en_fr.json", output_path="output/bilingual_workbook_kdp.pdf"):
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
