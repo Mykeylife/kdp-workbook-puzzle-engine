@@ -290,6 +290,7 @@ def build_kdp_pdf(json_path="data/units_en_fr.json", output_path="output/bilingu
         unit_solutions.append((unit_title, ws_ans, cw_grid))
 
     draw_answer_key_pages(c, unit_solutions)
+    draw_certificate_page(c, "Junior Explorer Activity Workbook")
     c.save()
     print(f"Successfully generated KDP-ready PDF at: {full_output_path}")
 
