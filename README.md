@@ -55,6 +55,15 @@ pip install -r requirements.txt
    ```bash
    pip install reportlab
    ```
+   
+# Build complete 65+ page Mega Workbook (Bilingual + Coding + Mazes + Keys)
+python main.py --mode full
+
+# Build Bilingual English–French Workbook only
+python main.py --mode bilingual
+
+# Build Screen-Free Coding & Logic Workbook only
+python main.py --mode coding
 
 3. **Generate puzzles and export KDP PDF:**
    ```bash
