@@ -2,7 +2,8 @@ import os
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
-from puzzle_engine import WORKBOOK_UNITS, generate_word_search, generate_crossword
+from data_loader import load_units_for_puzzles
+WORKBOOK_UNITS = load_units_for_puzzles()
 
 # KDP 8.5 x 11 inches (612 x 792 points) with 0.65-inch safe margins
 PAGE_WIDTH, PAGE_HEIGHT = letter
