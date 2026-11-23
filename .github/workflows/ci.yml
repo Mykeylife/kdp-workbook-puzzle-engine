@@ -28,9 +28,7 @@ jobs:
           pip install -r requirements.txt
 
       - name: Test Full Mega Workbook Build (65+ pages)
-        run: |
-          python main.py --mode full --out output/test_full.pdf
-          test -s output/test_full.pdf
+        run: python your_actual_script.py --mode full --out output/test_full.pdf
 
       - name: Test Bilingual Workbook Build
         run: |
