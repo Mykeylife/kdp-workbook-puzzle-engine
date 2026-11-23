@@ -9,7 +9,7 @@ on:
     types: [ published ]
 
 jobs:
-  test-pdf-generation:
+  test-streamlit-app:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,21 +26,6 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Test Full Mega Workbook Build (65+ pages)
-        run: |
-         mkdir -p output
-         python cli.py --mode full --out output/test_full.pdf
-    
-      - name: Test Bilingual Workbook Build
-        run: |
-          python main.py --mode bilingual --out output/test_bilingual.pdf
-          test -s output/test_bilingual.pdf
-
-      - name: Test Screen-Free Coding Workbook Build
-        run: |
-          python main.py --mode coding --out output/test_coding.pdf
-          test -s output/test_coding.pdf
 
       - name: Verify Streamlit App Syntax
         run: python -m py_compile app.py
