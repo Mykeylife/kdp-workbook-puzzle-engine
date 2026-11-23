@@ -1,0 +1,102 @@
+{
+  "Unit 1: Greetings & Politeness": [
+    {"en": "Hello", "fr": "Bonjour", "phonetic": "bohn-ZHOOR"},
+    {"en": "Goodbye", "fr": "Au revoir", "phonetic": "oh ruh-VWAHR"},
+    {"en": "Please", "fr": "S'il vous plaît", "phonetic": "seel voo PLAY"},
+    {"en": "Thank you", "fr": "Merci", "phonetic": "mehr-SEE"},
+    {"en": "Yes", "fr": "Oui", "phonetic": "wee"},
+    {"en": "No", "fr": "Non", "phonetic": "nohn"},
+    {"en": "Good morning", "fr": "Bon matin", "phonetic": "bohn mah-TAN"},
+    {"en": "Good night", "fr": "Bonne nuit", "phonetic": "bun NWEE"}
+  ],
+  "Unit 2: Numbers & Colors": [
+    {"en": "One", "fr": "Un", "phonetic": "uhn"},
+    {"en": "Two", "fr": "Deux", "phonetic": "duh"},
+    {"en": "Three", "fr": "Trois", "phonetic": "twah"},
+    {"en": "Four", "fr": "Quatre", "phonetic": "KAH-truh"},
+    {"en": "Red", "fr": "Rouge", "phonetic": "roozh"},
+    {"en": "Blue", "fr": "Bleu", "phonetic": "bluh"},
+    {"en": "Yellow", "fr": "Jaune", "phonetic": "zhohn"},
+    {"en": "Green", "fr": "Vert", "phonetic": "vehr"}
+  ],
+  "Unit 3: My Family": [
+    {"en": "Mother", "fr": "Mère", "phonetic": "mehr"},
+    {"en": "Father", "fr": "Père", "phonetic": "pehr"},
+    {"en": "Brother", "fr": "Frère", "phonetic": "frehr"},
+    {"en": "Sister", "fr": "Sœur", "phonetic": "suhr"},
+    {"en": "Baby", "fr": "Bébé", "phonetic": "bay-BAY"},
+    {"en": "Grandmother", "fr": "Grand-mère", "phonetic": "grahn-MEHR"},
+    {"en": "Grandfather", "fr": "Grand-père", "phonetic": "grahn-PEHR"},
+    {"en": "Family", "fr": "Famille", "phonetic": "fah-MEE"}
+  ],
+  "Unit 4: Farm & Wild Animals": [
+    {"en": "Dog", "fr": "Chien", "phonetic": "shyan"},
+    {"en": "Cat", "fr": "Chat", "phonetic": "shah"},
+    {"en": "Lion", "fr": "Lion", "phonetic": "lee-OHN"},
+    {"en": "Elephant", "fr": "Éléphant", "phonetic": "ay-lay-FAHN"},
+    {"en": "Bird", "fr": "Oiseau", "phonetic": "wah-ZOH"},
+    {"en": "Fish", "fr": "Poisson", "phonetic": "pwah-SOHN"},
+    {"en": "Cow", "fr": "Vache", "phonetic": "vahsh"},
+    {"en": "Monkey", "fr": "Singe", "phonetic": "sanzh"}
+  ],
+  "Unit 5: Yummy Food & Drinks": [
+    {"en": "Apple", "fr": "Pomme", "phonetic": "pum"},
+    {"en": "Banana", "fr": "Banane", "phonetic": "bah-NAHN"},
+    {"en": "Bread", "fr": "Pain", "phonetic": "pan"},
+    {"en": "Water", "fr": "Eau", "phonetic": "oh"},
+    {"en": "Milk", "fr": "Lait", "phonetic": "lay"},
+    {"en": "Rice", "fr": "Riz", "phonetic": "ree"},
+    {"en": "Egg", "fr": "Œuf", "phonetic": "uhf"},
+    {"en": "Cake", "fr": "Gâteau", "phonetic": "gah-TOH"}
+  ],
+  "Unit 6: My Body & Face": [
+    {"en": "Head", "fr": "Tête", "phonetic": "tet"},
+    {"en": "Eyes", "fr": "Yeux", "phonetic": "yuh"},
+    {"en": "Nose", "fr": "Nez", "phonetic": "nay"},
+    {"en": "Mouth", "fr": "Bouche", "phonetic": "boosh"},
+    {"en": "Ears", "fr": "Oreilles", "phonetic": "oh-RAY"},
+    {"en": "Hands", "fr": "Mains", "phonetic": "man"},
+    {"en": "Feet", "fr": "Pieds", "phonetic": "pyay"},
+    {"en": "Hair", "fr": "Cheveux", "phonetic": "shuh-VUH"}
+  ],
+  "Unit 7: At School": [
+    {"en": "Book", "fr": "Livre", "phonetic": "LEE-vruh"},
+    {"en": "Pencil", "fr": "Crayon", "phonetic": "kray-OHN"},
+    {"en": "Teacher", "fr": "Professeur", "phonetic": "proh-feh-SUHR"},
+    {"en": "Student", "fr": "Élève", "phonetic": "ay-LEV"},
+    {"en": "Bag", "fr": "Sac", "phonetic": "sahk"},
+    {"en": "Desk", "fr": "Bureau", "phonetic": "byoo-ROH"},
+    {"en": "Chair", "fr": "Chaise", "phonetic": "shez"},
+    {"en": "School", "fr": "École", "phonetic": "ay-KUL"}
+  ],
+  "Unit 8: Everyday Clothes": [
+    {"en": "Shirt", "fr": "Chemise", "phonetic": "shuh-MEEZ"},
+    {"en": "Pants", "fr": "Pantalon", "phonetic": "pahn-tah-LOHN"},
+    {"en": "Dress", "fr": "Robe", "phonetic": "rub"},
+    {"en": "Shoes", "fr": "Chaussures", "phonetic": "shoh-SOOR"},
+    {"en": "Hat", "fr": "Chapeau", "phonetic": "shah-POH"},
+    {"en": "Socks", "fr": "Chaussettes", "phonetic": "shoh-SET"},
+    {"en": "Coat", "fr": "Manteau", "phonetic": "mahn-TOH"},
+    {"en": "Glasses", "fr": "Lunettes", "phonetic": "loo-NET"}
+  ],
+  "Unit 9: Weather & Nature": [
+    {"en": "Sun", "fr": "Soleil", "phonetic": "soh-LAY"},
+    {"en": "Rain", "fr": "Pluie", "phonetic": "plwee"},
+    {"en": "Cloud", "fr": "Nuage", "phonetic": "nwahzh"},
+    {"en": "Tree", "fr": "Arbre", "phonetic": "AHR-bruh"},
+    {"en": "Flower", "fr": "Fleur", "phonetic": "fluhr"},
+    {"en": "Star", "fr": "Étoile", "phonetic": "ay-TWAHL"},
+    {"en": "Moon", "fr": "Lune", "phonetic": "loon"},
+    {"en": "Sea", "fr": "Mer", "phonetic": "mehr"}
+  ],
+  "Unit 10: Action Verbs": [
+    {"en": "Run", "fr": "Courir", "phonetic": "koo-REER"},
+    {"en": "Jump", "fr": "Sauter", "phonetic": "soh-TAY"},
+    {"en": "Eat", "fr": "Manger", "phonetic": "mahn-ZHAY"},
+    {"en": "Drink", "fr": "Boire", "phonetic": "bwahr"},
+    {"en": "Sleep", "fr": "Dormir", "phonetic": "dor-MEER"},
+    {"en": "Read", "fr": "Lire", "phonetic": "leer"},
+    {"en": "Play", "fr": "Jouer", "phonetic": "zhoo-AY"},
+    {"en": "Sing", "fr": "Chanter", "phonetic": "shahn-TAY"}
+  ]
+}
