@@ -32,6 +32,32 @@ from coding_puzzles import (
 )
 
 
+class NumberedCanvas(canvas.Canvas):
+    """Automatically adds 'Page X' footers to every page except the Title Page (page 1)."""
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._saved_page_states = []
+
+    def showPage(self):
+        self._saved_page_states.append(dict(self.__dict__))
+        self._startPage()
+
+    def save(self):
+        for page_index, state in enumerate(self._saved_page_states):
+            self.__dict__.update(state)
+            # Skip page number on Page 1 (Title Page)
+            if page_index > 0:
+                self.draw_page_number(page_index)
+            super().showPage()
+        super().save()
+
+    def draw_page_number(self, display_num):
+        self.setFont("Helvetica", 9.5)
+        self.setFillColor(colors.darkgray)
+        self.drawCentredString(PAGE_WIDTH / 2, MARGIN - 22, f"— {display_num} —")
+        self.setFillColor(colors.black)
+
+
 def draw_title_page(c, book_title, book_subtitle):
     """Renders a clean KDP Title Page."""
     c.setLineWidth(3)
