@@ -1,13 +1,16 @@
 import os
+import sys
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
-from data_loader import load_units_for_puzzles
-WORKBOOK_UNITS = load_units_for_puzzles()
+
+from data_loader import load_units_for_puzzles, load_full_units
+from puzzle_engine import generate_word_search, generate_crossword
 
 # KDP 8.5 x 11 inches (612 x 792 points) with 0.65-inch safe margins
 PAGE_WIDTH, PAGE_HEIGHT = letter
 MARGIN = 46.8  # 0.65 inches in points
+
 
 def draw_page_header(c, title, subtitle):
     c.setFont("Helvetica-Bold", 18)
@@ -17,11 +20,68 @@ def draw_page_header(c, title, subtitle):
     c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - MARGIN - 28, subtitle)
     c.setFillColor(colors.black)
 
+
+def draw_tracing_page(c, unit_title, unit_items):
+    draw_page_header(
+        c,
+        f"{unit_title} — Trace & Write",
+        "Say the word out loud, trace the word, then write it on your own!"
+    )
+
+    y_top = PAGE_HEIGHT - MARGIN - 65
+    row_height = 78  # Fits all 8 words cleanly on an 8.5x11 page
+
+    for idx, item in enumerate(unit_items):
+        en_word = item["en"]
+        target_word = item["fr"]
+        phonetic = item.get("phonetic", "")
+
+        row_y = y_top - (idx * row_height)
+
+        # Left label: Clue/English word + phonetic pronunciation
+        c.setFillColor(colors.black)
+        c.setFont("Helvetica-Bold", 11)
+        # Truncate long definitions slightly if using coding dataset
+        display_en = en_word if len(en_word) <= 24 else en_word[:22] + "..."
+        c.drawString(MARGIN + 5, row_y - 16, f"{idx + 1}. {display_en}")
+
+        if phonetic:
+            c.setFillColor(colors.darkgray)
+            c.setFont("Helvetica-Oblique", 10)
+            c.drawString(MARGIN + 18, row_y - 32, f"({phonetic})")
+
+        # Right side: Primary handwriting ruled lines
+        line_start_x = MARGIN + 165
+        line_end_x = PAGE_WIDTH - MARGIN - 5
+        top_line_y = row_y - 8
+        mid_line_y = row_y - 23
+        base_line_y = row_y - 38
+
+        c.setStrokeColor(colors.gray)
+        c.setLineWidth(0.8)
+        c.setDash([])  # Solid top & bottom lines
+        c.line(line_start_x, top_line_y, line_end_x, top_line_y)
+        c.line(line_start_x, base_line_y, line_end_x, base_line_y)
+
+        c.setDash(3, 3)  # Dashed midline for lowercase height
+        c.line(line_start_x, mid_line_y, line_end_x, mid_line_y)
+        c.setDash([])
+
+        # Traceable light-gray target word on the left side of the ruled line
+        c.setFillColor(colors.lightgrey)
+        c.setFont("Helvetica-Bold", 22)
+        c.drawString(line_start_x + 12, base_line_y + 4, target_word)
+
+    c.setFillColor(colors.black)
+    c.setStrokeColor(colors.black)
+    c.showPage()
+
+
 def draw_word_search_page(c, unit_title, ws_grid, ws_words):
     draw_page_header(
         c,
         f"{unit_title} — Word Search",
-        "Find and circle the hidden French words below (across or down)!"
+        "Find and circle the hidden words below (across or down)!"
     )
 
     grid_size = len(ws_grid)
@@ -44,23 +104,24 @@ def draw_word_search_page(c, unit_title, ws_grid, ws_words):
     # Draw 2-column Word Bank below grid
     bank_y = start_y - grid_total_w - 35
     c.setFont("Helvetica-Bold", 13)
-    c.drawString(MARGIN + 20, bank_y, "Word Bank (English → French):")
+    c.drawString(MARGIN + 20, bank_y, "Word Bank:")
 
-    c.setFont("Helvetica", 12)
-    col1_x = MARGIN + 25
+    c.setFont("Helvetica", 11)
+    col1_x = MARGIN + 20
     col2_x = PAGE_WIDTH / 2 + 10
     for idx, (eng, fr, _) in enumerate(ws_words):
         x = col1_x if idx < 4 else col2_x
         y = bank_y - 25 - ((idx % 4) * 22)
-        c.drawString(x, y, f"☐  {eng}  —  {fr}")
+        c.drawString(x, y, f"[ ]  {fr}  ({eng})")
 
     c.showPage()
+
 
 def draw_crossword_page(c, unit_title, cw_grid, cw_placed):
     draw_page_header(
         c,
         f"{unit_title} — Crossword",
-        "Translate the English clues into French to fill in the boxes!"
+        "Use the clues below to fill in the boxes!"
     )
 
     grid_size = len(cw_grid)
@@ -96,14 +157,15 @@ def draw_crossword_page(c, unit_title, cw_grid, cw_placed):
     c.drawString(MARGIN + 10, clues_y, "ACROSS")
     c.drawString(PAGE_WIDTH / 2 + 10, clues_y, "DOWN")
 
-    c.setFont("Helvetica", 11)
+    c.setFont("Helvetica", 10)
     for idx, p in enumerate(across):
-        c.drawString(MARGIN + 10, clues_y - 20 - (idx * 18), f"{p['num']}. {p['eng']} ({len(p['clean'])} letters)")
+        c.drawString(MARGIN + 10, clues_y - 20 - (idx * 18), f"{p['num']}. {p['eng']} ({len(p['clean'])})")
 
     for idx, p in enumerate(down):
-        c.drawString(PAGE_WIDTH / 2 + 10, clues_y - 20 - (idx * 18), f"{p['num']}. {p['eng']} ({len(p['clean'])} letters)")
+        c.drawString(PAGE_WIDTH / 2 + 10, clues_y - 20 - (idx * 18), f"{p['num']}. {p['eng']} ({len(p['clean'])})")
 
     c.showPage()
+
 
 def draw_answer_key_pages(c, unit_solutions):
     draw_page_header(c, "Answer Key", "Solutions for Word Searches and Crosswords")
@@ -134,12 +196,23 @@ def draw_answer_key_pages(c, unit_solutions):
 
     c.showPage()
 
-def build_kdp_pdf(output_path="output/bilingual_puzzles_kdp.pdf"):
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
-    c = canvas.Canvas(output_path, pagesize=letter)
+
+def build_kdp_pdf(json_path="data/units_en_fr.json", output_path="output/bilingual_workbook_kdp.pdf"):
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    full_output_path = os.path.join(base_dir, output_path)
+    os.makedirs(os.path.dirname(full_output_path), exist_ok=True)
+
+    c = canvas.Canvas(full_output_path, pagesize=letter)
     unit_solutions = []
 
-    for unit_title, words in WORKBOOK_UNITS.items():
+    puzzle_units = load_units_for_puzzles(json_path)
+    full_units = load_full_units(json_path)
+
+    for unit_title, words in puzzle_units.items():
+        # Page 1 of unit: Trace & Write
+        draw_tracing_page(c, unit_title, full_units[unit_title])
+
+        # Page 2 & 3 of unit: Word Search & Crossword
         ws_grid, ws_ans, ws_words = generate_word_search(words, size=10)
         cw_grid, cw_placed = generate_crossword(words, size=12)
 
@@ -149,7 +222,12 @@ def build_kdp_pdf(output_path="output/bilingual_puzzles_kdp.pdf"):
 
     draw_answer_key_pages(c, unit_solutions)
     c.save()
-    print(f"Successfully generated KDP-ready PDF at: {output_path}")
+    print(f"Successfully generated KDP-ready PDF at: {full_output_path}")
+
 
 if __name__ == "__main__":
-    build_kdp_pdf()
+    # Optional CLI usage:
+    # python src/pdf_exporter.py data/units_coding_kids.json output/coding_workbook_kdp.pdf
+    dataset = sys.argv[1] if len(sys.argv) > 1 else "data/units_en_fr.json"
+    out_file = sys.argv[2] if len(sys.argv) > 2 else "output/bilingual_workbook_kdp.pdf"
+    build_kdp_pdf(dataset, out_file)
