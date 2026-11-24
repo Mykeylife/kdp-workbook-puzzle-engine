@@ -28,4 +28,5 @@ jobs:
           pip install -r requirements.txt
 
       - name: Verify Streamlit App Syntax
-        run: python -m py_compile path/to/your_streamlit_file.py
+        run: python -m py_compile src/app.py src/main.py
+ 
