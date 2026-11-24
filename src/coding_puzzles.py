@@ -92,7 +92,7 @@ BINARY_PICTURES = {
  ,
  ,
  ,
-    ]
+    ],
 }
 
 
