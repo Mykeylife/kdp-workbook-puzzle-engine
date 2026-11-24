@@ -1,29 +1,32 @@
 import random
+import re
 import string
 
 
+def _unpack_word(word_tuple):
+    """Supports both (eng, fr) and (eng, fr, clean) tuples."""
+    if len(word_tuple) >= 3:
+        eng, fr, clean = word_tuple
+    else:
+        eng, fr = word_tuple
+        clean = re.sub(r"[^A-Za-z]", "", fr).upper()
+    return eng, fr, clean
+
+
 def _clean_len(word_tuple):
-    _, _, clean = word_tuple
+    _, _, clean = _unpack_word(word_tuple)
     return len(clean)
 
 
 def generate_word_search(words, size=10):
     """
     Generates a Word Search grid and its answer-key grid.
-
-    Args:
-        words: List of tuples (eng, fr, clean) from data_loader.
-        size: Grid dimension (default 10x10).
-
-    Returns:
-        ws_grid: 2D list of uppercase letters (puzzle grid with random filler).
-        ws_ans: 2D list of uppercase letters with '.' for unused cells (answer key).
-        placed_words: List of (eng, fr, clean) tuples successfully placed in the grid.
     """
     grid = [['' for _ in range(size)] for _ in range(size)]
+    normalized = [_unpack_word(w) for w in words]
     placed_words = []
 
-    sorted_words = sorted(words, key=_clean_len, reverse=True)
+    sorted_words = sorted(normalized, key=_clean_len, reverse=True)
     directions = [(0, 1), (1, 0)]  # Across (right) and Down
 
     for eng, fr, clean in sorted_words:
@@ -68,7 +71,7 @@ def generate_word_search(words, size=10):
     ]
 
     placed_set = set(placed_words)
-    ordered_placed = [w for w in words if w in placed_set]
+    ordered_placed = [w for w in normalized if w in placed_set]
 
     return ws_grid, ws_ans, ordered_placed
 
@@ -76,20 +79,12 @@ def generate_word_search(words, size=10):
 def generate_crossword(words, size=12):
     """
     Generates an intersecting Crossword grid and numbered clue metadata.
-
-    Args:
-        words: List of tuples (eng, fr, clean) from data_loader.
-        size: Grid dimension (default 12x12).
-
-    Returns:
-        cw_grid: 2D list of characters (' ' for empty cells, uppercase letters for filled).
-        cw_placed: List of dicts with keys:
-                   {'r', 'c', 'dir', 'eng', 'fr', 'clean', 'num'}
     """
     grid = [[' ' for _ in range(size)] for _ in range(size)]
+    normalized = [_unpack_word(w) for w in words]
     placed = []
 
-    valid_words = [w for w in words if 1 < _clean_len(w) <= size]
+    valid_words = [w for w in normalized if 1 < _clean_len(w) <= size]
     sorted_words = sorted(valid_words, key=_clean_len, reverse=True)
 
     if not sorted_words:
@@ -144,7 +139,6 @@ def generate_crossword(words, size=12):
             "clean": word,
         })
 
-    # Place first (longest) word horizontally near the center
     first_item, *remaining_words = sorted_words
     first_eng, first_fr, first_clean = first_item
     first_word = first_clean.upper()
@@ -152,7 +146,6 @@ def generate_crossword(words, size=12):
     start_c = max(0, (size - len(first_word)) // 2)
     place_word_on_grid(first_eng, first_fr, first_clean, start_r, start_c, "ACROSS")
 
-    # Intersect remaining words
     for eng, fr, clean in remaining_words:
         word = clean.upper()
         best_candidate = None
@@ -185,7 +178,6 @@ def generate_crossword(words, size=12):
         if best_candidate:
             place_word_on_grid(eng, fr, clean, *best_candidate)
 
-    # Assign standard crossword numbers (top-to-bottom, left-to-right)
     start_coords = sorted({(p.get("r"), p.get("c")) for p in placed})
     coord_to_num = {coord: idx + 1 for idx, coord in enumerate(start_coords)}
 
