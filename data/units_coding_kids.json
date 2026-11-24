@@ -1,0 +1,52 @@
+{
+  "Coding Unit 1: Algorithms & Steps": [
+    {"en": "Step-by-step rules", "fr": "ALGORITHM", "phonetic": "AL-guh-rih-thum"},
+    {"en": "Order of steps", "fr": "SEQUENCE", "phonetic": "SEE-kwens"},
+    {"en": "Instructions for PC", "fr": "CODE", "phonetic": "kohd"},
+    {"en": "Start the program", "fr": "RUN", "phonetic": "ruhn"},
+    {"en": "Information stored", "fr": "DATA", "phonetic": "DAY-tuh"},
+    {"en": "Something you enter", "fr": "INPUT", "phonetic": "IN-put"},
+    {"en": "Result shown out", "fr": "OUTPUT", "phonetic": "OWT-put"},
+    {"en": "Plan before coding", "fr": "LOGIC", "phonetic": "LAH-jik"}
+  ],
+  "Coding Unit 2: Loops & Decisions": [
+    {"en": "Repeat action again", "fr": "LOOP", "phonetic": "loop"},
+    {"en": "Do it one more time", "fr": "REPEAT", "phonetic": "rih-PEET"},
+    {"en": "A choice or fork", "fr": "BRANCH", "phonetic": "branch"},
+    {"en": "Yes in logic", "fr": "TRUE", "phonetic": "troo"},
+    {"en": "No in logic", "fr": "FALSE", "phonetic": "fawls"},
+    {"en": "What happens next", "fr": "EVENT", "phonetic": "ih-VENT"},
+    {"en": "Pause the action", "fr": "WAIT", "phonetic": "wayt"},
+    {"en": "Stop the loop", "fr": "BREAK", "phonetic": "brayk"}
+  ],
+  "Coding Unit 3: Debugging & Fixing": [
+    {"en": "Mistake in code", "fr": "BUG", "phonetic": "buhg"},
+    {"en": "Find and fix bugs", "fr": "DEBUG", "phonetic": "dee-BUHG"},
+    {"en": "Check if it works", "fr": "TEST", "phonetic": "test"},
+    {"en": "Something went wrong", "fr": "ERROR", "phonetic": "EHR-ur"},
+    {"en": "Repair broken code", "fr": "FIX", "phonetic": "fiks"},
+    {"en": "Keep a copy safe", "fr": "SAVE", "phonetic": "sayv"},
+    {"en": "Open saved work", "fr": "LOAD", "phonetic": "lohd"},
+    {"en": "Helpful code note", "fr": "HINT", "phonetic": "hint"}
+  ],
+  "Coding Unit 4: Computer Parts": [
+    {"en": "Zeros and ones", "fr": "BINARY", "phonetic": "BY-nuh-ree"},
+    {"en": "Single 0 or 1", "fr": "BIT", "phonetic": "bit"},
+    {"en": "Group of 8 bits", "fr": "BYTE", "phonetic": "byt"},
+    {"en": "Tiny screen dot", "fr": "PIXEL", "phonetic": "PIK-sul"},
+    {"en": "Machine helper", "fr": "ROBOT", "phonetic": "ROH-baht"},
+    {"en": "Detects light/touch", "fr": "SENSOR", "phonetic": "SEN-sur"},
+    {"en": "Click and point tool", "fr": "MOUSE", "phonetic": "mows"},
+    {"en": "Display monitor", "fr": "SCREEN", "phonetic": "skreen"}
+  ],
+  "Coding Unit 5: Games & Apps": [
+    {"en": "Movable game hero", "fr": "SPRITE", "phonetic": "spryt"},
+    {"en": "Game points earned", "fr": "SCORE", "phonetic": "skor"},
+    {"en": "Stage in a game", "fr": "LEVEL", "phonetic": "LEH-vul"},
+    {"en": "Named storage box", "fr": "VARIABLE", "phonetic": "VAIR-ee-uh-bul"},
+    {"en": "Reusable code block", "fr": "FUNCTION", "phonetic": "FUHNK-shun"},
+    {"en": "Ordered group", "fr": "ARRAY", "phonetic": "uh-RAY"},
+    {"en": "Text of letters", "fr": "STRING", "phonetic": "string"},
+    {"en": "Whole number value", "fr": "INTEGER", "phonetic": "IN-tih-jur"}
+  ]
+}
