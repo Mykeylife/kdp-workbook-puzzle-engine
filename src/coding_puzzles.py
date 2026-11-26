@@ -3,6 +3,7 @@ import random
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
+from reportlab.lib.utils import simpleSplit
 
 PAGE_WIDTH, PAGE_HEIGHT = letter
 MARGIN = 46.8  # 0.65 inches
@@ -211,13 +212,17 @@ def draw_coding_answer_key(c, maze_solutions, pixel_solutions):
     c.drawString(MARGIN, y_cursor, "Robot Algorithm Solutions:")
     y_cursor -= 20
 
+    max_line_w = PAGE_WIDTH - 2 * MARGIN - 20
     c.setFont("Helvetica", 10)
     for idx, arrows in enumerate(maze_solutions, start=1):
-        seq_str = " -> ".join(arrows)
-        c.drawString(MARGIN + 10, y_cursor, f"Challenge #{idx}: {seq_str}")
-        y_cursor -= 18
+        seq_str = f"Challenge #{idx}: " + " -> ".join(arrows)
+        wrapped_lines = simpleSplit(seq_str, "Helvetica", 10, max_line_w)
+        for line in wrapped_lines:
+            c.drawString(MARGIN + 10, y_cursor, line)
+            y_cursor -= 15
+        y_cursor -= 4
 
-    y_cursor -= 25
+    y_cursor -= 20
     c.setFont("Helvetica-Bold", 13)
     c.drawString(MARGIN, y_cursor, "Binary Pixel-Art Solutions:")
     y_cursor -= 20
@@ -250,13 +255,12 @@ def build_coding_activities_pdf(output_path="output/coding_activities_kdp.pdf"):
         draw_robot_maze_page(c, level, grid, arrows)
         maze_solutions.append(arrows)
 
-    # Generate 4 Binary Pixel-Art Challenges
     for title, matrix in BINARY_PICTURES.items():
         draw_binary_pixel_page(c, title, matrix)
 
     draw_coding_answer_key(c, maze_solutions, BINARY_PICTURES)
     c.save()
-    print(f"Successfully generated Coding Activities PDF at: {full_path}")
+    print(f"[SUCCESS] Generated Coding Activities KDP PDF at: {full_path}")
 
 
 if __name__ == "__main__":
