@@ -4,6 +4,7 @@ import sys
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
+from reportlab.lib.utils import simpleSplit
 
 # Ensure src/ is in the Python path so modules import cleanly from root
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -59,16 +60,28 @@ class NumberedCanvas(canvas.Canvas):
 
 
 def draw_title_page(c, book_title, book_subtitle):
-    """Renders a clean KDP Title Page."""
+    """Renders a clean KDP Title Page with safe text wrapping."""
     c.setLineWidth(3)
     c.rect(MARGIN, MARGIN, PAGE_WIDTH - 2 * MARGIN, PAGE_HEIGHT - 2 * MARGIN)
 
-    c.setFont("Helvetica-Bold", 30)
-    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 220, book_title)
+    max_text_width = PAGE_WIDTH - 2 * MARGIN - 40
 
-    c.setFont("Helvetica", 15)
+    # Wrap long book title safely inside margins
+    c.setFont("Helvetica-Bold", 26)
+    title_lines = simpleSplit(book_title, "Helvetica-Bold", 26, max_text_width)
+    y = PAGE_HEIGHT - 200
+    for line in title_lines:
+        c.drawCentredString(PAGE_WIDTH / 2, y, line)
+        y -= 34
+
+    # Wrap long subtitle safely inside margins
+    y -= 12
+    c.setFont("Helvetica", 13)
     c.setFillColor(colors.darkgray)
-    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 260, book_subtitle)
+    sub_lines = simpleSplit(book_subtitle, "Helvetica", 13, max_text_width)
+    for line in sub_lines:
+        c.drawCentredString(PAGE_WIDTH / 2, y, line)
+        y -= 20
 
     c.setFillColor(colors.black)
     c.setFont("Helvetica-Bold", 14)
