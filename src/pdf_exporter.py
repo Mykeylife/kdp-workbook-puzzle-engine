@@ -3,6 +3,7 @@ import sys
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
+from reportlab.lib.utils import simpleSplit
 
 from data_loader import load_units_for_puzzles, load_full_units
 from puzzle_engine import generate_word_search, generate_crossword
@@ -196,6 +197,7 @@ def draw_answer_key_pages(c, unit_solutions):
 
     c.showPage()
 
+
 def draw_certificate_page(c, book_subtitle="Bilingual Vocabulary & Brain Puzzles"):
     # Dashed outer cut-out border
     c.setStrokeColor(colors.black)
@@ -220,8 +222,9 @@ def draw_certificate_page(c, book_subtitle="Bilingual Vocabulary & Brain Puzzles
     c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - MARGIN + 6, "✂  Cut along the dashed line to display your certificate!  ✂")
 
     # Main Certificate Title
+    max_cert_w = PAGE_WIDTH - 2 * (MARGIN + inner_offset + 20)
     c.setFillColor(colors.black)
-    c.setFont("Helvetica-Bold", 28)
+    c.setFont("Helvetica-Bold", 24)
     c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 165, "CERTIFICATE OF ACHIEVEMENT")
 
     c.setFont("Helvetica", 14)
@@ -234,70 +237,26 @@ def draw_certificate_page(c, book_subtitle="Bilingual Vocabulary & Brain Puzzles
     c.setFillColor(colors.darkgray)
     c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 290, "(Write your name here)")
 
-    # Achievement Text
+    # Achievement Text & Wrapped Book Subtitle
     c.setFillColor(colors.black)
-    c.setFont("Helvetica", 14)
-    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 340, "has successfully completed all units and brain puzzles in")
+    c.setFont("Helvetica", 13)
+    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 335, "has successfully completed all puzzles and activities in")
 
-    c.setFont("Helvetica-Bold", 16)
-    c.drawCentredString(PAGE_WIDTH / 2, PAGE_HEIGHT - 370, book_subtitle)
+    c.setFont("Helvetica-Bold", 15)
+    sub_lines = simpleSplit(book_subtitle, "Helvetica-Bold", 15, max_cert_w)
+    sub_y = PAGE_HEIGHT - 365
+    for line in sub_lines:
+        c.drawCentredString(PAGE_WIDTH / 2, sub_y, line)
+        sub_y -= 22
 
-    # Decorative Star / Seal Emblem
-    center_x = PAGE_WIDTH / 2
-    seal_y = PAGE_HEIGHT - 465
-    c.setLineWidth(2)
-    c.circle(center_x, seal_y, 38, stroke=1, fill=0)
-    c.setLineWidth(1)
-    c.circle(center_x, seal_y, 32, stroke=1, fill=0)
-    c.setFont("Helvetica-Bold", 11)
-    c.drawCentredString(center_x, seal_y + 4, "SUPER")
-    c.drawCentredString(center_x, seal_y - 10, "LEARNER")
-
-    # Date and Signature Lines
+    # Date & Signature Lines
     sig_y = MARGIN + 75
     c.setLineWidth(1)
-    c.line(95, sig_y, 255, sig_y)
-    c.line(PAGE_WIDTH - 255, sig_y, PAGE_WIDTH - 95, sig_y)
+    c.line(MARGIN + 45, sig_y, MARGIN + 215, sig_y)
+    c.line(PAGE_WIDTH - MARGIN - 215, sig_y, PAGE_WIDTH - MARGIN - 45, sig_y)
 
-    c.setFont("Helvetica", 11)
-    c.drawCentredString(175, sig_y - 16, "Date")
-    c.drawCentredString(PAGE_WIDTH - 175, sig_y - 16, "Parent / Teacher Signature")
+    c.setFont("Helvetica", 10)
+    c.drawCentredString(MARGIN + 130, sig_y - 15, "Date")
+    c.drawCentredString(PAGE_WIDTH - MARGIN - 130, sig_y - 15, "Parent / Teacher Signature")
 
     c.showPage()
-
-
-def build_kdp_pdf(json_path="data/units_en_fr.json", output_path="output/bilingual_workbook_kdp.pdf"):
-    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    full_output_path = os.path.join(base_dir, output_path)
-    os.makedirs(os.path.dirname(full_output_path), exist_ok=True)
-
-    c = canvas.Canvas(full_output_path, pagesize=letter)
-    unit_solutions = []
-
-    puzzle_units = load_units_for_puzzles(json_path)
-    full_units = load_full_units(json_path)
-
-    for unit_title, words in puzzle_units.items():
-        # Page 1 of unit: Trace & Write
-        draw_tracing_page(c, unit_title, full_units[unit_title])
-
-        # Page 2 & 3 of unit: Word Search & Crossword
-        ws_grid, ws_ans, ws_words = generate_word_search(words, size=10)
-        cw_grid, cw_placed = generate_crossword(words, size=12)
-
-        draw_word_search_page(c, unit_title, ws_grid, ws_words)
-        draw_crossword_page(c, unit_title, cw_grid, cw_placed)
-        unit_solutions.append((unit_title, ws_ans, cw_grid))
-
-    draw_answer_key_pages(c, unit_solutions)
-    draw_certificate_page(c, "Junior Explorer Activity Workbook")
-    c.save()
-    print(f"Successfully generated KDP-ready PDF at: {full_output_path}")
-
-
-if __name__ == "__main__":
-    # Optional CLI usage:
-    # python src/pdf_exporter.py data/units_coding_kids.json output/coding_workbook_kdp.pdf
-    dataset = sys.argv[1] if len(sys.argv) > 1 else "data/units_en_fr.json"
-    out_file = sys.argv[2] if len(sys.argv) > 2 else "output/bilingual_workbook_kdp.pdf"
-    build_kdp_pdf(dataset, out_file)
