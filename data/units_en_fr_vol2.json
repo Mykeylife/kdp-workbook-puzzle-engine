@@ -1,0 +1,53 @@
+{
+  "series_title": "French & English Brain Games for Tweens & Teens",
+  "volume": 2,
+  "age_range": "9-15",
+  "grid_size": 15,
+  "units": [
+    {
+      "unit_number": 1,
+      "title_en": "Tech & Digital Life",
+      "title_fr": "La Technologie et le Numérique",
+      "vocabulary": [
+        {"en": "KEYBOARD", "fr": "CLAVIER", "phonetic": "klah-vyay", "clue": "You type on this device (Le ______)"},
+        {"en": "SCREEN", "fr": "ÉCRAN", "phonetic": "ay-krahn", "clue": "The display on a phone or laptop (Un ______)"},
+        {"en": "PASSWORD", "fr": "MOT DE PASSE", "phonetic": "moh duh pahss", "clue": "Secret code to unlock an account"},
+        {"en": "HEADPHONES", "fr": "CASQUE", "phonetic": "kahsk", "clue": "Worn over the ears to listen to music"},
+        {"en": "DOWNLOAD", "fr": "TÉLÉCHARGER", "phonetic": "tay-lay-shar-zhay", "clue": "Verb: To save a file from the internet"},
+        {"en": "WIRELESS", "fr": "SANS FIL", "phonetic": "sahn feel", "clue": "Connecting without cables"},
+        {"en": "BATTERY", "fr": "BATTERIE", "phonetic": "bah-tree", "clue": "Powers your smartphone"},
+        {"en": "WEBSITE", "fr": "SITE WEB", "phonetic": "seet web", "clue": "An online page or portal"}
+      ]
+    },
+    {
+      "unit_number": 2,
+      "title_en": "School & Subjects",
+      "title_fr": "L'École et les Matières",
+      "vocabulary": [
+        {"en": "SCHEDULE", "fr": "EMPLOI DU TEMPS", "phonetic": "ahm-plwah doo tahn", "clue": "Shows when each class starts and ends"},
+        {"en": "HOMEWORK", "fr": "DEVOIRS", "phonetic": "duh-vwahr", "clue": "Assignments completed after school"},
+        {"en": "NOTEBOOK", "fr": "CAHIER", "phonetic": "kah-yay", "clue": "Used for writing class notes"},
+        {"en": "LIBRARY", "fr": "BIBLIOTHÈQUE", "phonetic": "bee-blee-oh-tek", "clue": "Quiet place to borrow books and study"},
+        {"en": "BACKPACK", "fr": "SAC À DOS", "phonetic": "sahk ah doh", "clue": "Bag carried on your shoulders"},
+        {"en": "CHEMISTRY", "fr": "CHIMIE", "phonetic": "shee-mee", "clue": "Science of elements and reactions"},
+        {"en": "HISTORY", "fr": "HISTOIRE", "phonetic": "ees-twahr", "clue": "Study of past events"},
+        {"en": "EXAM", "fr": "EXAMEN", "phonetic": "eg-zah-man", "clue": "A major test at the end of a term"}
+      ]
+    },
+    {
+      "unit_number": 3,
+      "title_en": "Sports & Fitness",
+      "title_fr": "Le Sport et la Forme",
+      "vocabulary": [
+        {"en": "REFEREE", "fr": "ARBITRE", "phonetic": "ar-bee-truh", "clue": "Official who enforces the rules of the game"},
+        {"en": "TEAMMATE", "fr": "COÉQUIPIER", "phonetic": "koh-ay-kee-pyay", "clue": "Someone who plays on your side"},
+        {"en": "STADIUM", "fr": "STADE", "phonetic": "stahd", "clue": "Large arena where matches are played"},
+        {"en": "TRAINING", "fr": "ENTRAÎNEMENT", "phonetic": "ahn-tren-mahn", "clue": "Practice session to build skill and stamina"},
+        {"en": "VICTORY", "fr": "VICTOIRE", "phonetic": "veek-twahr", "clue": "Winning a match or competition"},
+        {"en": "CHAMPIONSHIP", "fr": "CHAMPIONNAT", "phonetic": "shahm-pyoh-nah", "clue": "A tournament to decide the best team"},
+        {"en": "GOALKEEPER", "fr": "GARDIEN", "phonetic": "gar-dyan", "clue": "Player who defends the net"},
+        {"en": "MEDAL", "fr": "MÉDAILLE", "phonetic": "may-dahy", "clue": "Gold, silver, or bronze prize"}
+      ]
+    }
+  ]
+}
