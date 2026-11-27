@@ -50,4 +50,109 @@
       ]
     }
   ]
-}
+},
+    {
+      "unit_number": 4,
+      "title_en": "Travel & Airports",
+      "title_fr": "Les Voyages et l'Aéroport",
+      "vocabulary": [
+        {"en": "PASSPORT", "fr": "PASSEPORT", "phonetic": "pahss-por", "clue": "Official ID booklet needed for international flights"},
+        {"en": "LUGGAGE", "fr": "BAGAGES", "phonetic": "bah-gahzh", "clue": "Suitcases and bags packed for a trip"},
+        {"en": "TICKET", "fr": "BILLET", "phonetic": "bee-yay", "clue": "Pass that allows you to board a plane or train"},
+        {"en": "DESTINATION", "fr": "DESTINATION", "phonetic": "des-tee-nah-syohn", "clue": "The place where your journey ends"},
+        {"en": "SUBWAY", "fr": "MÉTRO", "phonetic": "may-troh", "clue": "Underground city train system"},
+        {"en": "TOURIST", "fr": "TOURISTE", "phonetic": "too-reest", "clue": "Person visiting a city or country on vacation"},
+        {"en": "MAP", "fr": "CARTE", "phonetic": "kart", "clue": "Drawing of roads, cities, and landmarks"},
+        {"en": "DEPARTURE", "fr": "DÉPART", "phonetic": "day-par", "clue": "The act of leaving on a trip"}
+      ]
+    },
+    {
+      "unit_number": 5,
+      "title_en": "City & Navigation",
+      "title_fr": "La Ville et l'Orientation",
+      "vocabulary": [
+        {"en": "CROSSWALK", "fr": "PASSAGE PIÉTON", "phonetic": "pah-sahzh pyay-tohn", "clue": "Striped path for walking safely across a street"},
+        {"en": "PHARMACY", "fr": "PHARMACIE", "phonetic": "far-mah-see", "clue": "Store where medicine is prepared and sold"},
+        {"en": "MUSEUM", "fr": "MUSÉE", "phonetic": "mew-zay", "clue": "Building displaying art, science, or history"},
+        {"en": "BAKERY", "fr": "BOULANGERIE", "phonetic": "boo-lahn-zhuh-ree", "clue": "Shop where fresh bread and croissants are made"},
+        {"en": "BRIDGE", "fr": "PONT", "phonetic": "pohn", "clue": "Structure built over a river or road"},
+        {"en": "NEIGHBORHOOD", "fr": "QUARTIER", "phonetic": "kar-tyay", "clue": "A local district or section of a city"},
+        {"en": "SQUARE", "fr": "PLACE", "phonetic": "plahss", "clue": "Open public plaza in the center of town"},
+        {"en": "TRAFFIC", "fr": "CIRCULATION", "phonetic": "seer-kew-lah-syohn", "clue": "Vehicles moving along city streets"}
+      ]
+    },
+    {
+      "unit_number": 6,
+      "title_en": "Food & Café Culture",
+      "title_fr": "La Cuisine et le Café",
+      "vocabulary": [
+        {"en": "WAITER", "fr": "SERVEUR", "phonetic": "ser-vur", "clue": "Person who takes your order at a restaurant"},
+        {"en": "APPETIZER", "fr": "ENTRÉE", "phonetic": "ahn-tray", "clue": "Small dish served before the main course"},
+        {"en": "DESSERT", "fr": "DESSERT", "phonetic": "day-ser", "clue": "Sweet course eaten at the end of a meal"},
+        {"en": "SPICY", "fr": "ÉPICÉ", "phonetic": "ay-pee-say", "clue": "Adjective: Flavored with hot peppers or strong spices"},
+        {"en": "BEVERAGE", "fr": "BOISSON", "phonetic": "bwah-sohn", "clue": "Any drink, such as juice, tea, or water"},
+        {"en": "BILL", "fr": "ADDITION", "phonetic": "ah-dee-syohn", "clue": "Paper showing the total cost of your meal"},
+        {"en": "FORK", "fr": "FOURCHETTE", "phonetic": "foor-shet", "clue": "Utensil with prongs used for eating"},
+        {"en": "RECIPE", "fr": "RECETTE", "phonetic": "ruh-set", "clue": "Step-by-step instructions for cooking a dish"}
+      ]
+    },
+    {
+      "unit_number": 7,
+      "title_en": "Weather & Environment",
+      "title_fr": "La Météo et l'Environnement",
+      "vocabulary": [
+        {"en": "FORECAST", "fr": "PRÉVISIONS", "phonetic": "pray-vee-zyohn", "clue": "Prediction of upcoming weather conditions"},
+        {"en": "RECYCLING", "fr": "RECYCLAGE", "phonetic": "ruh-see-klahzh", "clue": "Processing used paper, glass, or plastic into new items"},
+        {"en": "CLIMATE", "fr": "CLIMAT", "phonetic": "klee-mah", "clue": "Long-term weather pattern of a region"},
+        {"en": "THUNDERSTORM", "fr": "ORAGE", "phonetic": "oh-rahzh", "clue": "Storm with lightning, thunder, and heavy rain"},
+        {"en": "TEMPERATURE", "fr": "TEMPÉRATURE", "phonetic": "tahm-pay-rah-tewr", "clue": "Measure of how hot or cold the air is"},
+        {"en": "FOREST", "fr": "FORÊT", "phonetic": "foh-ray", "clue": "Large area covered thickly with trees"},
+        {"en": "SOLAR", "fr": "SOLAIRE", "phonetic": "soh-ler", "clue": "Energy powered by light from the sun"},
+        {"en": "PLANET", "fr": "PLANÈTE", "phonetic": "plah-net", "clue": "Large world orbiting a star, such as Earth"}
+      ]
+    },
+    {
+      "unit_number": 8,
+      "title_en": "Hobbies & Pop Culture",
+      "title_fr": "Les Loisirs et la Culture",
+      "vocabulary": [
+        {"en": "PHOTOGRAPHY", "fr": "PHOTOGRAPHIE", "phonetic": "foh-toh-grah-fee", "clue": "Art of capturing images with a camera"},
+        {"en": "CONCERT", "fr": "CONCERT", "phonetic": "kohn-ser", "clue": "Live musical performance in front of an audience"},
+        {"en": "NOVEL", "fr": "ROMAN", "phonetic": "roh-mahn", "clue": "Long fictional story published as a book"},
+        {"en": "GUITAR", "fr": "GUITARE", "phonetic": "gee-tar", "clue": "Six-stringed musical instrument"},
+        {"en": "DRAWING", "fr": "DESSIN", "phonetic": "day-san", "clue": "Picture sketched with a pencil or pen"},
+        {"en": "CINEMA", "fr": "CINÉMA", "phonetic": "see-nay-mah", "clue": "Theater where movies are shown on a big screen"},
+        {"en": "PODCAST", "fr": "BALADO", "phonetic": "bah-lah-doh", "clue": "Digital audio show you can stream or download"},
+        {"en": "CHESS", "fr": "ÉCHECS", "phonetic": "ay-shek", "clue": "Strategy board game with kings, queens, and pawns"}
+      ]
+    },
+    {
+      "unit_number": 9,
+      "title_en": "Emotions & Personality",
+      "title_fr": "Les Émotions et le Caractère",
+      "vocabulary": [
+        {"en": "CONFIDENT", "fr": "CONFIANT", "phonetic": "kohn-fyahn", "clue": "Feeling sure of your own abilities"},
+        {"en": "CURIOUS", "fr": "CURIEUX", "phonetic": "kew-ryuh", "clue": "Eager to learn or know more about something"},
+        {"en": "GENEROUS", "fr": "GÉNÉREUX", "phonetic": "zhay-nay-ruh", "clue": "Willing to share time, help, or resources"},
+        {"en": "PATIENT", "fr": "PATIENT", "phonetic": "pah-syahn", "clue": "Able to stay calm while waiting"},
+        {"en": "AMBITIOUS", "fr": "AMBITIEUX", "phonetic": "ahm-bee-syuh", "clue": "Having a strong desire to achieve big goals"},
+        {"en": "CREATIVE", "fr": "CRÉATIF", "phonetic": "kray-ah-teef", "clue": "Full of original ideas and imagination"},
+        {"en": "STRESSED", "fr": "STRESSÉ", "phonetic": "stres-say", "clue": "Feeling worried or overwhelmed under pressure"},
+        {"en": "HONEST", "fr": "HONNÊTE", "phonetic": "oh-net", "clue": "Truthful and sincere"}
+      ]
+    },
+    {
+      "unit_number": 10,
+      "title_en": "Future Careers & Goals",
+      "title_fr": "Les Métiers et l'Avenir",
+      "vocabulary": [
+        {"en": "ENGINEER", "fr": "INGÉNIEUR", "phonetic": "an-zhay-nyur", "clue": "Professional who designs machines, software, or bridges"},
+        {"en": "JOURNALIST", "fr": "JOURNALISTE", "phonetic": "zhoor-nah-leest", "clue": "Writer or reporter who investigates and shares news"},
+        {"en": "ARCHITECT", "fr": "ARCHITECTE", "phonetic": "ar-shee-tekt", "clue": "Person who plans and designs buildings"},
+        {"en": "SCIENTIST", "fr": "SCIENTIFIQUE", "phonetic": "syahn-tee-feek", "clue": "Expert who conducts research and experiments"},
+        {"en": "DESIGNER", "fr": "DESIGNER", "phonetic": "dee-zay-ner", "clue": "Creator who plans the look and function of products"},
+        {"en": "LAWYER", "fr": "AVOCAT", "phonetic": "ah-voh-kah", "clue": "Professional trained to advise and represent people in court"},
+        {"en": "PILOT", "fr": "PILOTE", "phonetic": "pee-loht", "clue": "Person who operates the controls of an aircraft"},
+        {"en": "CHEF", "fr": "CHEF CUISINIER", "phonetic": "shef kwee-zee-nyay", "clue": "Head cook in a professional kitchen"}
+      ]
+    }
