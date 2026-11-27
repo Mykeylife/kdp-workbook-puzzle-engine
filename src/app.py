@@ -108,43 +108,26 @@ if "custom_units" not in st.session_state:
 # ==========================================
 with st.sidebar:
     st.header("⚙️ Workbook Settings")
-
+    
     mode = st.selectbox(
         "Workbook Edition",
-        options=["full", "bilingual", "coding", "custom"],
+        options=["full", "bilingual", "bilingual_vol2", "coding", "custom"],
         format_func=lambda x: {
             "full": "Mega Workbook (Bilingual + Coding, 64+ Pages)",
-            "bilingual": "English–French Bilingual Workbook",
+            "bilingual": "English-French Bilingual Workbook (Vol 1: Ages 5–8)",
+            "bilingual_vol2": "English-French Bilingual Workbook (Vol 2: Ages 9–15)",
             "coding": "Screen-Free Logic & Coding Workbook",
             "custom": "Custom Units Only (Built in Browser)",
         }.get(x, x),
     )
 
     default_titles = {
-        "full": ("FUN FRENCH & ENGLISH BRAIN GAMES FOR KIDS", "Bilingual Vocabulary Tracing, Word Searches, Crosswords & Screen-Free Coding Puzzles (Ages 5–9)"),
-        "bilingual": ("ENGLISH–FRENCH WORKBOOK", "Bilingual Vocabulary, Handwriting & Brain Puzzles (Ages 5–8)"),
-        "coding": ("SCREEN-FREE CODING & LOGIC", "Unplugged Algorithms, Robot Mazes & Binary Pixel Art (Ages 6–9)"),
+        "full": ("FUN FRENCH & ENGLISH BRAIN GAMES FOR KIDS", "Bilingual Vocabulary Tracing, Word Searches, Crosswords & Coding Puzzles"),
+        "bilingual": ("ENGLISH-FRENCH WORKBOOK", "Bilingual Vocabulary, Handwriting & Brain Puzzles (Ages 5-8)"),
+        "bilingual_vol2": ("FRENCH & ENGLISH BRAIN GAMES FOR TWEENS & TEENS", "Real-World Vocabulary, Crosswords & Word Puzzles (Ages 9-15)"),
+        "coding": ("SCREEN-FREE CODING & LOGIC", "Unplugged Algorithms, Robot Mazes & Binary Pixel Art (Ages 6-11)"),
         "custom": ("CUSTOM ACTIVITY WORKBOOK", "Vocabulary Tracing, Word Searches & Crossword Puzzles"),
     }
-
-    default_heading, default_sub = default_titles.get(mode, ("ACTIVITY WORKBOOK", "Bilingual & Logic Puzzles"))
-    book_title = st.text_input("Title Page Heading", value=default_heading)
-    book_subtitle = st.text_input("Title Page Subtitle", value=default_sub)
-    cert_title = st.text_input("Certificate Book Name", value=book_title.title())
-
-    include_custom = st.checkbox(
-        "Append my Custom Units to this book",
-        value=True,
-        disabled=(mode == "custom"),
-    )
-
-    maze_count = st.slider(
-        "Number of Robot Grid Mazes",
-        min_value=2,
-        max_value=12,
-        value=8,
-        disabled=(mode in ("bilingual", "custom")),
-    )
 
 # ==========================================
 # MAIN TABS
@@ -203,12 +186,14 @@ with tab_build:
                         draw_crossword_page(c, unit_title, cw_grid, cw_placed)
                         unit_solutions.append((unit_title, ws_ans, cw_grid))
 
+                if mode in ("full", "bilingual"):
+                    append_vocab_section(c, "data/units_en_fr.json", unit_solutions)
+
+                if mode == "bilingual_vol2":
+                    append_vocab_section(c, "data/units_en_fr_vol2.json", unit_solutions)
+
                 if mode in ("full", "coding"):
-                    maze_solutions = []
-                    for level in range(1, maze_count + 1):
-                        grid, _, arrows = generate_robot_maze(grid_size=6, num_obstacles=min(4 + level, 10))
-                        draw_robot_maze_page(c, level, grid, arrows)
-                        maze_solutions.append(arrows)
+                    append_vocab_section(c, "data/units_coding_kids.json", unit_solutions)
 
                     for title, matrix in BINARY_PICTURES.items():
                         draw_binary_pixel_page(c, title, matrix)
