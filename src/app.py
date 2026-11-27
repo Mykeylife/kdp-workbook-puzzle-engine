@@ -129,6 +129,25 @@ with st.sidebar:
         "custom": ("CUSTOM ACTIVITY WORKBOOK", "Vocabulary Tracing, Word Searches & Crossword Puzzles"),
     }
 
+    default_heading, default_sub = default_titles.get(mode, ("ACTIVITY WORKBOOK", "Bilingual & Logic Puzzles"))
+    book_title = st.text_input("Title Page Heading", value=default_heading)
+    book_subtitle = st.text_input("Title Page Subtitle", value=default_sub)
+    cert_title = st.text_input("Certificate Book Name", value=book_title.title())
+
+    include_custom = st.checkbox(
+        "Append my Custom Units to this book",
+        value=True,
+        disabled=(mode == "custom"),
+    )
+
+    maze_count = st.slider(
+        "Number of Robot Grid Mazes",
+        min_value=1,
+        max_value=12,
+        value=8,
+        disabled=(mode in ("bilingual", "bilingual_vol2", "custom")),
+    )
+
 # ==========================================
 # MAIN TABS
 # ==========================================
