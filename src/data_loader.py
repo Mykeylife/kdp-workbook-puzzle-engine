@@ -14,7 +14,16 @@ def load_full_units(json_path="data/units_en_fr.json"):
     """Loads full unit objects including English, French/target word, and phonetics."""
     full_path = _resolve_path(json_path)
     with open(full_path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+
+    if isinstance(data, dict) and "units" in data:
+        normalized = {}
+        for unit in data["units"]:
+            title = f"Unit {unit['unit_number']}: {unit['title_en']} ({unit['title_fr']})"
+            normalized[title] = unit["vocabulary"]
+        return normalized
+
+    return data
 
 
 def load_units_for_puzzles(json_path="data/units_en_fr.json"):
@@ -24,4 +33,3 @@ def load_units_for_puzzles(json_path="data/units_en_fr.json"):
     for unit_title, items in raw_data.items():
         formatted_units[unit_title] = [(entry["en"], entry["fr"]) for entry in items]
     return formatted_units
-    
