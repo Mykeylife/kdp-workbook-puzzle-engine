@@ -1,34 +1,40 @@
-name: KDP Workbook Engine CI
+name: KDP PDF Build & Validation CI
 
 on:
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  release:
-    types: [ published ]
 
 jobs:
-  test-streamlit-app:
+  build-pdfs:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.11
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-          cache: "pip"
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install reportlab pillow
 
-      - name: Verify Streamlit App Syntax
-        run: python -m py_compile src/app.py src/main.py
- 
-      - name: Validate JSON Datasets
-        run: python -m json.tool data/units_en_fr.json > /dev/null && python -m json.tool data/units_en_fr_vol2.json > /dev/null
+      - name: Validate JSON datasets
+        run: |
+          python -c "import json, glob; [json.load(open(f, encoding='utf-8')) for f in glob.glob('data/*.json')]; print('All JSON datasets are valid!')"
+
+      - name: Build Bilingual Drawing Book PDF
+        run: |
+          python src/build_drawing_book.py
+          test -s output/Learn_to_Draw_English_French_Ages_4_8.pdf
+
+      - name: Upload Generated PDF Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: kdp-drawing-book-pdf
+          path: output/Learn_to_Draw_English_French_Ages_4_8.pdf
