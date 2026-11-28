@@ -48,9 +48,7 @@
         {"en": "GOALKEEPER", "fr": "GARDIEN", "phonetic": "gar-dyan", "clue": "Player who defends the net"},
         {"en": "MEDAL", "fr": "MÉDAILLE", "phonetic": "may-dahy", "clue": "Gold, silver, or bronze prize"}
       ]
-    }
-  ]
-},
+    },
     {
       "unit_number": 4,
       "title_en": "Travel & Airports",
